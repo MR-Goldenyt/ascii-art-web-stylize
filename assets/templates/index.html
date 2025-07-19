@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ASCII Art (Web) Project</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- local CSS -->
+  <link rel="stylesheet" href="/static/styles.css">
+  <video autoplay muted loop playsinline id="bg-video">
+  <source src="static/matrix.mp4" type="video/mp4">
+</video>
+<style>
+  #bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  body {
+    margin: 0;
+    background: black;
+    color: white;
+    font-family: monospace;
+  }
+
+  main {
+    position: relative;
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+  <main>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top navbar-glassy">
+      <div class="container-fluid">
+        <a class="navbar-brand hover-glow-text unselectable" href="/">ASCII Art (Web) Project</a>
+      </div>
+    </nav>
+
+    <div class="container mt-5">
+
+      <!-- Error Message -->
+      {{ if .Error }}
+        <div class="alert alert-danger alert-danger-glow" role="alert">
+          {{ .Error }}
+        </div>
+      {{ end }}
+
+      <!-- Input Form -->
+      <div class="card shadow-sm glassy">
+        <div class="card-body hover-glow glassy">
+          <h5 class="card-title hover-glow-text unselectable" style="display: inline;">Generate ASCII Art</h5>
+          <form action="/ascii-art" method="post">
+            <div class="mb-3">
+              <label for="text" class="form-label hover-glow-text unselectable">Text to Render</label>
+              <textarea class="form-control glow-input" id="text" maxlength="300" name="text" rows="1" wrap="off" style="height: 105px;" required>{{ .Input }}</textarea>
+            </div>
+            <div class="mb-3">
+              <label for="banner" class="form-label hover-glow-text unselectable">Choose Font</label>
+              <select class="form-select custom-select glow-input glassy" id="banner" name="banner">
+                <option value="standard"  {{ if eq .Banner "standard" }}selected{{ end }}>🟢 Standard</option>
+                <option value="shadow"    {{ if eq .Banner "shadow" }}selected{{ end }}>🔴 Shadow</option>
+                <option value="thinkertoy"{{ if eq .Banner "thinkertoy" }}selected{{ end }}>🔵 Thinkertoy</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary unselectable glassy">Generate</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- ASCII Result -->
+      {{ if .Result }}
+        <hr class="dashed-black">
+        <div class="card shadow-sm glassy" style="margin-bottom: 2%;">
+          <div class="card-body hover-glow glassy">
+            <h5 class="card-title hover-glow-text unselectable" style="display: inline;">Result</h5>
+            <textarea class="form-control ascii-output glow-input" id="result" rows="{{.Linecount}}" readonly wrap="off">{{ .Result }}</textarea>
+          </div>
+        </div>
+      {{ end }}
+
+    </div>
+  </main>
+</body>
+</html>

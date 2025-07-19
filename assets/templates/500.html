@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>500 Internal Server Error</title>
+  <link rel="stylesheet" href="/static/styles.css">
+
+  <!-- Background Video -->
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="/static/matrix.mp4" type="video/mp4">
+  </video>
+
+  <style>
+    /* Background video setup */
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100vw;
+      min-height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    body {
+      text-align: center;
+      background-color: #000;
+      color: #00ff00;
+      font-family: 'Share Tech Mono', monospace;
+      background-image: radial-gradient(ellipse at center, #001100 0%, #000000 100%);
+      margin: 0;
+      padding: 0;
+    }
+
+    .content-wrapper {
+      margin: 0 auto;
+      max-width: 55vw;
+      padding-bottom: 2%;
+    }
+
+    .error-code {
+      font-size: 6rem;
+      font-weight: bold;
+      text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+      position: relative;
+      z-index: 1;
+    }
+
+    .go-back {
+      display: inline-block;
+      font-size: 1.5rem;
+      margin-top: 30px;
+      padding: 12px 24px;
+      text-decoration: none;
+      color: #00ff00;
+      border: 1px solid #00ff00;
+      background-color: #000;
+      border-radius: 7px;
+      box-shadow: 0 0 6px #00ff00;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .go-back:hover {
+      background-color: #001100;
+      box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+      text-shadow: 0 0 5px #00ff00;
+    }
+  </style>
+</head>
+<body>
+  <div class="card glassy" style="margin: 0 auto;margin-top:  23vh; max-width: 50%; padding-bottom: 2.5%;">
+    <div class="card-body glassy">
+      <div class="error-code hover-glow-text unselectable" style="display: inline;">500<br>Internal Server Error</div>
+    </div>
+  </div>
+</body>
+</html>
