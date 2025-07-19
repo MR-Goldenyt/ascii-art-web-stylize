@@ -24,13 +24,22 @@ func GetHomeHandler(tmpl *template.Template) http.HandlerFunc {
 			return
 		}
 
+		showImage, imagePath := helpers.LuckyWinner()
+
 		data := struct {
 			Input  string
 			Banner string
 			Result string
 			Error  string
+
+			// 1% chance of an image showing up
+			ShowImage bool
+			ImagePath string
 		}{
 			Banner: "standard",
+			ShowImage: showImage,
+			ImagePath: imagePath,
+
 		}
 		w.WriteHeader(http.StatusOK)
 		tmpl.ExecuteTemplate(w, "index.html", data)

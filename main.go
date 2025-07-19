@@ -1,9 +1,9 @@
 package main
 
 import (
+	"ascii-art-web-stylize/assets"
 	"ascii-art-web-stylize/handlers"
 	"ascii-art-web-stylize/helpers"
-	"ascii-art-web-stylize/assets"
 	"html/template"
 	"log"
 	"net/http"
@@ -12,7 +12,7 @@ import (
 func main() {
 	err := helpers.CheckRequiredAssets()
 	if err != nil {
-		log.Printf("Necessary files are missing")		
+		log.Printf("Necessary files are missing")
 	}
 	// Serve static files behind a custom handler
 	http.Handle("/static/", handlers.AssetHandler())

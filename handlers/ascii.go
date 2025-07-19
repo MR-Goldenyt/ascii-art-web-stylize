@@ -23,6 +23,7 @@ func PostArtHandler(tmpl *template.Template, fonts embed.FS) http.HandlerFunc {
 
 		input := r.FormValue("text")
 		banner := strings.ToLower(r.FormValue("banner"))
+		showImage, imagePath := helpers.LuckyWinner()
 
 		data := struct {
 			Input     string
@@ -30,9 +31,15 @@ func PostArtHandler(tmpl *template.Template, fonts embed.FS) http.HandlerFunc {
 			Result    string
 			Linecount int
 			Error     string
+
+			// 1% chance of an image showing up
+			ShowImage bool
+			ImagePath string
 		}{
 			Input:  input,
 			Banner: banner,
+			ShowImage: showImage,
+			ImagePath: imagePath,
 		}
 
 		// 1) Validate input
