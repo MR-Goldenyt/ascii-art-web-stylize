@@ -50,7 +50,7 @@
   .navbar-brand {
     color: #00ff00 !important;
     text-shadow: 0 0 3px #00ff00;
-    transition: text-shadow 0.3s ease, color 0.3s ease;
+    transition: text-shadow 0.3s ease, color 0.3s ease; 
   }
 
   .navbar-brand:hover {

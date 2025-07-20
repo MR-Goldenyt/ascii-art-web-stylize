@@ -12,7 +12,7 @@ import (
 func PostArtHandler(tmpl *template.Template, fonts embed.FS) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != http.MethodPost {
-			http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
+			helpers.Handle405(w, tmpl)
 			return
 		}
 
